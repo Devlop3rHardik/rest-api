@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online User</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 px-6 py-6 sm:py-12">
+      <img src="/img/beams.jpg" alt="" class="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2" width="1308" />
+      <div class="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+      <div class="relative min-w-[30%] rounded-lg bg-white px-6 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
+        <div class="mx-auto max-w-md">
+          <div class="divide-y divide-gray-300/50">
+            <div class="space-y-0 py-0 text-base leading-7 text-gray-600">
+              <code id="dynamicCode" class="whitespace-pre-wrap text-sm font-bold text-gray-900"> 
+[ 
+   { 
+      "online_user":   <span id="dynamicOnlineUser">0</span>, 
+      "pause":         <span id="dynamicPause">0</span>, 
+      "destroyed":     <span id="dynamicDestroyed">0</span>, 
+      "closed":        <span id="dynamicClosed">0</span> 
+   }
+]; 
+              </code>
+              <ul class="flex space-x-4">
+                <li class="absolute left-2 top-2 items-center">
+                  <svg class="h-6 w-6 flex-none fill-red-500 stroke-red-500 stroke-2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="8" cy="8" r="7" />
+                  </svg>
+                </li>
+                <li class="absolute left-3 top-2 items-center">
+                  <svg class="h-6 w-6 flex-none fill-yellow-500 stroke-yellow-500 stroke-2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="8" cy="8" r="7" />
+                  </svg>
+                </li>
+                <li class="absolute left-8 top-2 items-center">
+                  <svg class="h-6 w-6 flex-none fill-green-500 stroke-green-500 stroke-2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="8" cy="8" r="7" />
+                  </svg>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Function to update dynamic values
+      function updateDynamicValues(data) {
+        document.getElementById("dynamicOnlineUser").innerText = data.counter;
+      }
+    
+      // Function to fetch dynamic values from the server
+      function fetchDataAndUpdate() {
+        fetch('/counter')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => updateDynamicValues(data))
+          .catch(error => console.error('Error fetching data:', error));
+      }
+    
+      // Update dynamic values every second
+      setInterval(fetchDataAndUpdate, 1000);
+    </script>
+    
+  </body>
+</html>
