@@ -56,7 +56,7 @@
       // Function to fetch dynamic values from the server
       function fetchDataAndUpdate() {
         // Use the full URL including the port (e.g., http://localhost:3000/counter)
-        fetch('http://localhost:3000/counter')
+        fetch('/counter')
           .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
