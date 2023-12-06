@@ -55,7 +55,8 @@
     
       // Function to fetch dynamic values from the server
       function fetchDataAndUpdate() {
-        fetch('/counter')
+        // Use the full URL including the port (e.g., http://localhost:3000/counter)
+        fetch('http://localhost:3000/counter')
           .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -69,6 +70,5 @@
       // Update dynamic values every second
       setInterval(fetchDataAndUpdate, 1000);
     </script>
-    
   </body>
 </html>

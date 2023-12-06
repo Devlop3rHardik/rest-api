@@ -1,11 +1,15 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors'); // Import the cors middleware
 const app = express();
 
 let counter = 0;
 let uniqueUsers = new Set();
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Use cors middleware
+app.use(cors());
 
 app.use((req, res, next) => {
   const userIP = req.ip;
